@@ -873,4 +873,7 @@ ifneq ($(SCREWD_BUILD),)
 $(eval include vendor/screwd/sepolicy/sepolicy.mk)
 endif
 
+# Rules for QCOM targets
+include $(BUILD_SYSTEM)/qcom_target.mk
+
 include $(BUILD_SYSTEM)/dumpvar.mk
