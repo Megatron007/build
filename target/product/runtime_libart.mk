@@ -33,6 +33,7 @@ PRODUCT_PACKAGES += \
     ext \
     hprof-conv \
     libart \
+    libart_fake \
     libcrypto \
     libexpat \
     libicui18n \
