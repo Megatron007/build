@@ -72,7 +72,8 @@ DISABLE_POLLY_arm := \
   libprotobuf-cpp-lite \
   libRSCpuRef \
   libRS	\
-  libRSDrive
+  libRSDrive \
+  libart-compiler
 
 DISABLE_POLLY_arm64 := \
   libbccSupport \
@@ -87,7 +88,8 @@ DISABLE_POLLY_arm64 := \
   libLLVMSelectionDAG \
   libLLVMTransformUtils \
   libstagefright_mpeg2ts \
-  bcc_strip_attr
+  bcc_strip_attr \
+  libart-compiler
 
 # Add version specific disables.
 ifeq (1,$(words $(filter 3.8 3.9,$(LLVM_PREBUILTS_VERSION))))
