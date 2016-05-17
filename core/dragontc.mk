@@ -96,6 +96,7 @@ ifeq (1,$(words $(filter 3.8 3.9,$(LLVM_PREBUILTS_VERSION))))
   DISABLE_POLLY_arm64 += \
 	healthd \
 	libandroid_runtime \
+	libart-compiler \
 	libblas \
 	libF77blas \
 	libF77blasV8 \
@@ -112,6 +113,7 @@ ifeq (1,$(words $(filter 3.8 3.9,$(LLVM_PREBUILTS_VERSION))))
 	libLLVMSupport \
 	libLLVMTransformObjCARC \
 	libLLVMVectorize \
+	libmedia \
 	libminui \
 	libprotobuf-cpp-lite \
 	libRS \
@@ -170,7 +172,7 @@ endif
 DISABLE_LTO_arm := libLLVMScalarOpts libjni_latinime_common_static libjni_latinime adbd nit libnetd_client libblas
 DISABLE_THINLTO_arm :=
 DISABLE_LTO_arm64 :=  libLLVMScalarOpts libjni_latinime_common_static libjni_latinime adbd nit libnetd_client libblas
-DISABLE_THINLTO_arm64 :=
+DISABLE_THINLTO_arm64 := libart-compiler
 
 # Set DISABLE_LTO and DISABLE_THINLTO based on arch
 DISABLE_LTO := \
