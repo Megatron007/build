@@ -1619,11 +1619,21 @@ bootzip: bootimage
 bacon: otapackage
 
 	$(hide) $(MD5SUM) $(INTERNAL_OTA_PACKAGE_TARGET) > $(INTERNAL_OTA_PACKAGE_TARGET).md5sum
-	@echo -e ${CL_CYN}"=============== $$(echo $(TARGET_PRODUCT) | sed 's/\([a-z]\)\([a-zA-Z0-9]*\)/\u\1\2/g' | cut -d'_' -f1) OTA package: COMPLETE ==============="${CL_RST}
-	@echo -e ${CL_CYN}"ZIP: "${CL_CYN} $$(basename $(INTERNAL_OTA_PACKAGE_TARGET))${CL_RST}
-	@echo -e ${CL_CYN}"MD5: "${CL_CYN}" `cat $(INTERNAL_OTA_PACKAGE_TARGET).md5sum | cut -d ' ' -f 1`"${CL_RST}
-	@echo -e ${CL_CYN}"Size:"${CL_CYN}" `ls -la --si $(INTERNAL_OTA_PACKAGE_TARGET) | cut -d ' ' -f 5`"${CL_RST}
-	@echo -e ${CL_CYN}"============================================================="${CL_RST}
+	@echo -e ${CL_MAG}"      ▄████████  ▄████████    ▄████████    ▄████████   ▄█     █▄  ████████▄ "${CL_MAG} 
+	@echo -e ${CL_MAG}"     ███     ███ ███    ███   ███    ███   ███    ███ ███     ███ ███   ▀███"${CL_MAG}
+	@echo -e ${CL_MAG}"     ██      █▀  ███    █▀    ███    ███   ███    █▀  ███     ███ ███    ███ "${CL_MAG}
+	@echo -e ${CL_MAG}"    ███          ███         ▄███▄▄▄▄██▀  ▄███▄▄▄     ███     ███ ███    ███ "${CL_MAG}
+	@echo -e ${CL_MAG}"   ▀███████████  ███       ▀▀███▀▀▀▀▀   ▀▀███▀▀▀      ███     ███ ███    ███ "${CL_MAG}
+	@echo -e ${CL_MAG}"             ███ ███    █▄  ▀███████████   ███    █▄  ███     ███ ███    ███ "${CL_MAG}
+	@echo -e ${CL_MAG}"       ▄█    ███ ███    ███   ███    ███   ███    ███ ███ ▄█▄ ███ ███   ▄███ "${CL_MAG}
+	@echo -e ${CL_MAG}"     ▀█████████▀  ████████▀   ███    ███   ██████████  ▀███▀███▀  ████████▀  "${CL_MAG}
+	@echo -e ${CL_MAG}"                              ██     ██                                     "${CL_MAG}
+	@echo -e ${CL_MAG}"                             █      █                                     "${CL_MAG}
+	@echo -e ${CLR_RST}"                                                                           "${CLR_RST}
+	@echo -e ${CL_RST}"        ZIP: "${CL_RST} $$(basename $(INTERNAL_OTA_PACKAGE_TARGET))${CL_RST}
+	@echo -e ${CL_RST}"        Size:"${CL_RST}" `ls -la --si $(INTERNAL_OTA_PACKAGE_TARGET) | cut -d ' ' -f 5`"${CL_RST}
+	@echo -e ${CL_MAG}"        Remember, you ain't shit if you've never been Screw'd up. Enjoy!   "${CL_MAG}
+	@echo -e ${CLR_RST}"                                                                           "${CLR_RST}
 
 endif    # recovery_fstab is defined
 endif    # TARGET_NO_KERNEL != true
