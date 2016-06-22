@@ -1600,6 +1600,7 @@ function mk_timer()
     else
         echo -n -e "${color_failed}#### make failed to build some targets "
     fi
+    echo -e "${color_reset}"
     echo
     return $ret
 }
