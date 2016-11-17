@@ -232,7 +232,6 @@ ifeq ($(TARGET_CPU_ABI),)
   $(error No TARGET_CPU_ABI defined by board config: $(board_config_mk))
 endif
 TARGET_CPU_ABI2 := $(strip $(TARGET_CPU_ABI2))
-include $(BUILD_SYSTEM)/uber.mk
 
 # Commands to generate .toc file common to ELF .so files.
 define _gen_toc_command_for_elf
@@ -358,9 +357,6 @@ endif
 
 # define clang/llvm versions and base directory.
 include $(BUILD_SYSTEM)/clang/versions.mk
-
-# define sdclang LTO definitions
-include $(BUILD_SYSTEM)/sdllvm-lto-defs.mk
 
 # Disable WITH_STATIC_ANALYZER and WITH_SYNTAX_CHECK if tool can't be found
 SYNTAX_TOOLS_PREFIX := \
