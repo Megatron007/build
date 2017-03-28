@@ -32,7 +32,7 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
     # Tell HALs that we're compiling an AOSP build with an in-line kernel
     TARGET_COMPILE_WITH_MSM_KERNEL := true
 
-    ifneq ($(filter msm7x30 msm8660 msm8960,$(TARGET_BOARD_PLATFORM)),)
+    ifneq ($(filter msm7x27a msm7x30 msm8660 msm8960,$(TARGET_BOARD_PLATFORM)),)
         # Enable legacy graphics functions
         qcom_flags += -DQCOM_BSP_LEGACY
         # Enable legacy audio functions
@@ -40,6 +40,11 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
             USE_CUSTOM_AUDIO_POLICY := 1
             qcom_flags += -DLEGACY_ALSA_AUDIO
         endif
+    endif
+
+    # Enable extra offloading for post-805 targets
+    ifneq ($(filter msm8992 msm8994,$(TARGET_BOARD_PLATFORM)),)
+        qcom_flags += -DHAS_EXTRA_FLAC_METADATA
     endif
 
     TARGET_GLOBAL_CFLAGS += $(qcom_flags)
@@ -60,10 +65,14 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
         ifneq ($(filter msm8909 msm8916,$(TARGET_BOARD_PLATFORM)),)
             QCOM_HARDWARE_VARIANT := msm8916
         else
+        ifneq ($(filter msm8953 msm8937,$(TARGET_BOARD_PLATFORM)),)
+            QCOM_HARDWARE_VARIANT := msm8937
+        else
         ifneq ($(filter msm8992 msm8994,$(TARGET_BOARD_PLATFORM)),)
             QCOM_HARDWARE_VARIANT := msm8994
         else
             QCOM_HARDWARE_VARIANT := $(TARGET_BOARD_PLATFORM)
+        endif
         endif
         endif
         endif
@@ -80,9 +89,9 @@ $(call set-device-specific-path,GPS,gps,hardware/qcom/gps)
 $(call set-device-specific-path,SENSORS,sensors,hardware/qcom/sensors)
 $(call set-device-specific-path,LOC_API,loc-api,vendor/qcom/opensource/location)
 $(call set-device-specific-path,DATASERVICES,dataservices,vendor/qcom/opensource/dataservices)
-$(call project-set-path,ril,hardware/ril-caf)
+$(call project-set-path,ril,hardware/ril)
 $(call project-set-path,wlan,hardware/qcom/wlan)
-$(call project-set-path,bt-vendor,hardware/qcom/bt-caf)
+$(call project-set-path,bt-vendor,hardware/qcom/bt)
 else
 $(call project-set-path,qcom-audio,hardware/qcom/audio-caf/$(QCOM_HARDWARE_VARIANT))
 
@@ -100,8 +109,8 @@ $(call set-device-specific-path,SENSORS,sensors,hardware/qcom/sensors)
 $(call set-device-specific-path,LOC_API,loc-api,vendor/qcom/opensource/location)
 $(call set-device-specific-path,DATASERVICES,dataservices,vendor/qcom/opensource/dataservices)
 
-$(call ril-set-path-variant,ril-caf)
-$(call wlan-set-path-variant,wlan)
+$(call ril-set-path-variant,ril)
+$(call wlan-set-path-variant,wlan-caf)
 $(call bt-vendor-set-path-variant,bt-caf)
 endif # AOSP_VARIANT_MAKEFILE
 
